@@ -7,6 +7,10 @@ import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/pomodoro/',
+  build: {
+    outDir: 'docs',
+  },
   plugins: [
     VueDevTools(),
     Vue({
@@ -21,10 +25,12 @@ export default defineConfig({
     }),
     Fonts({
       google: {
-        families: [{
-          name: 'Roboto',
-          styles: 'wght@100;300;400;500;700;900',
-        }],
+        families: [
+          {
+            name: 'Roboto',
+            styles: 'wght@100;300;400;500;700;900',
+          },
+        ],
       },
     }),
   ],
@@ -42,15 +48,7 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('src', import.meta.url)),
     },
-    extensions: [
-      '.js',
-      '.json',
-      '.jsx',
-      '.mjs',
-      '.ts',
-      '.tsx',
-      '.vue',
-    ],
+    extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue'],
   },
   server: {
     port: 3000,
