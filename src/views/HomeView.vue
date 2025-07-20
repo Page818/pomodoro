@@ -31,12 +31,14 @@
               class="starry-btn mx-2"
               :disabled="status !== STATUS.COUNTING"
               icon="mdi-pause"
+              @click="pauseTimer"
               title="暫停"
             />
             <v-btn
               class="starry-btn mx-2"
               :disabled="!list.currentItem"
               icon="mdi-skip-next"
+              @click="skipItem"
               title="跳過"
             />
           </div>
@@ -82,6 +84,19 @@ const timeLeftText = computed(() => {
   const s = (list.timeleft % 60).toString().padStart(2, '0')
   return `${m}:${s}`
 })
+
+const pauseTimer = () => {
+  clearInterval(timer)
+  status.value = STATUS.PAUSE
+  console.log('暫停')
+}
+
+const skipItem = () => {
+  clearInterval(timer)
+  list.setNextItem()
+  status.value = STATUS.STOP
+  console.log('跳過')
+}
 </script>
 
 <style scoped>

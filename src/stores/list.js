@@ -31,6 +31,21 @@ export const useListStore = defineStore('list', () => {
     })
   }
 
+  const setNextItem = () => {
+    if (items.length === 0) {
+      currentItem.value = ''
+      return
+    }
+    // 🔁 移除目前事項
+    const skipped = items.shift()
+
+    // 設定下一個項目
+    const next = items[0]
+    currentItem.value = next?.text || ''
+    timeleft.value = timeWork
+    isBreak.value = false
+  }
+
   // 📝 編輯事項
   const editItem = id => {
     const i = items.findIndex(item => item.id === id)
@@ -116,5 +131,6 @@ export const useListStore = defineStore('list', () => {
     countdown,
     setCurrentItem,
     startBreak,
+    setNextItem,
   }
 })
