@@ -34,10 +34,11 @@ export const useListStore = defineStore('list', () => {
   const setNextItem = () => {
     if (items.length === 0) {
       currentItem.value = ''
+      timeleft.value = 0
       return
     }
     // 🔁 移除目前事項
-    const skipped = items.shift()
+    items.shift()
 
     // 設定下一個項目
     const next = items[0]
